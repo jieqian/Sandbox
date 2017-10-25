@@ -1,12 +1,11 @@
 package com.sandbox.sizeof.com.carrotsearch.cache.prototype;
 
+import com.sandbox.sizeof.RamUsageEstimator;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-
-import com.carrotsearch.sizeof.RamUsageEstimator;
-import com.sandbox.sizeof.RamUsageEstimator;
 
 /**
  * Simple {@link org.springframework.cache.Cache} implementation based on the

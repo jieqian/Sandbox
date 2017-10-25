@@ -2,10 +2,11 @@ package com.sandbox.sizeof;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.reflect.*;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
-
-import com.carrotsearch.sizeof.RamUsageEstimator;
 
 /**
  * Dumps retained and shallow memory taken by an object and its reference
