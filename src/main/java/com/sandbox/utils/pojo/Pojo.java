@@ -7,6 +7,11 @@ public class Pojo{
 		   this.x=x;
 		   this.y=y;
 	   }
+
+	   public Pojo(){
+	   	  this.x = "default";
+	   	  this.y = 0;
+	   }
 	   
 	   public String getX(){
 		   return this.x;
