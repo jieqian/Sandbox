@@ -4,7 +4,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAccumulator;
+import java.util.concurrent.atomic.LongAdder;
 import java.util.function.LongBinaryOperator;
 import java.util.stream.IntStream;
 
@@ -14,20 +16,32 @@ import java.util.stream.IntStream;
 public class LongAccumulatorSandbox {
     public static void main(String[] args) throws InterruptedException {
         LongBinaryOperator op = (x, y) -> x + y;
-        LongAccumulator accumulator = new LongAccumulator(op, 0L);
+        LongAccumulator longAccumulator = new LongAccumulator(op, 0L);
 
-        CountDownLatch countDownLatch = new CountDownLatch(10);
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        IntStream.range(0, 10)
+        AtomicLong atomicLong = new AtomicLong();
+
+        LongAdder longAdder = new LongAdder();
+
+        int range = 10000000;
+        CountDownLatch countDownLatch = new CountDownLatch(range);
+
+        ExecutorService executor = Executors.newFixedThreadPool(500);
+        long start = System.currentTimeMillis();
+        IntStream.range(0, range)
                 .forEach(i -> {
                     executor.submit(() -> {
-                        accumulator.accumulate(i);
+                        longAccumulator.accumulate(1);
+//                        atomicLong.incrementAndGet();
+//                        longAdder.increment();
                         countDownLatch.countDown();
                     });
                 });
         countDownLatch.await();
-        System.out.println(accumulator.getThenReset());
+        System.out.println(longAccumulator.getThenReset());
+//        System.out.println(atomicLong.get());
+//        System.out.println(longAdder.longValue());
 
+        System.out.println(System.currentTimeMillis() - start);
         try {
             executor.shutdown();
             executor.awaitTermination(100000, TimeUnit.MILLISECONDS);
