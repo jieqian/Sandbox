@@ -13,7 +13,7 @@ public enum Gsons{
     private Gson gson;
     Gsons(String type){
         if (type.equals("default")){
-            gson = new GsonBuilder().setPrettyPrinting().create();
+            gson = new GsonBuilder().create();
         }
     }
     public Gson instance(){
