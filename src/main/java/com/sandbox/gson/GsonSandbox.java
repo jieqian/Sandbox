@@ -6,7 +6,9 @@ import com.sandbox.utils.pojo.Pojo;
 import com.sandbox.utils.tuple.Tuple2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by qianjie on 10/25/17.
@@ -27,11 +29,22 @@ public class GsonSandbox {
 //        System.out.println(deserializedTuple2._1());
 //        System.out.println(deserializedTuple2._2());
 
-        List<Tuple2<String,String>> list = new ArrayList<>();
-        list.add(t1);
-        list.add(t2);
+//        List<Tuple2<String,String>> list = new ArrayList<>();
+//        list.add(t1);
+//        list.add(t2);
+//
+//        System.out.println(gson.toJson(list,new TypeToken<List<Tuple2<String,String>>>(){}.getType()));
 
-        System.out.println(gson.toJson(list,new TypeToken<List<Tuple2<String,String>>>(){}.getType()));
+        Number dbl = new Double(0.32);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("k1","v1");
+        map.put("k2","v2");
+        map.put("k3","v3");
+        map.put("time",System.currentTimeMillis());
+        map.put("double",dbl);
+        map.forEach((k,v)-> k = "tag_" + k);
+        System.out.println(gson.toJson(map));
     }
 
     public void test(Gson gson, Object object){
