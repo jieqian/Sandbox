@@ -1,16 +1,21 @@
 package com.sandbox.utils.pojo;
 
+import java.util.Date;
+
 public class Pojo{
 	   private String x;
 	   private int y;
+	   private Date date;
 	   public Pojo(String x, int y){
 		   this.x=x;
 		   this.y=y;
+		   this.date = new Date();
 	   }
 
 	   public Pojo(){
 	   	  this.x = "default";
 	   	  this.y = 0;
+	      this.date = new Date();
 	   }
 	   
 	   public String getX(){
