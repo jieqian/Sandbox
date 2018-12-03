@@ -1,6 +1,7 @@
 package com.sandbox.ldap;
 
 import com.sun.jndi.ldap.LdapCtx;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Hashtable;
 import javax.naming.*;
@@ -80,8 +81,9 @@ public class LdapJNDI {
         }
     }
 
-    private String getUserDN(String uid) {
+    private LdapUser getUserDN(String uid) {
         String userDN = "";
+        String displayName = "";
         LDAP_connect();
         try {
             SearchControls constraints = new SearchControls();
@@ -90,34 +92,45 @@ public class LdapJNDI {
             if (en == null || !en.hasMoreElements()) {
                 System.out.println("未找到该用户");
             }
+
             // maybe more than one element
             while (en != null && en.hasMoreElements()) {
                 Object obj = en.nextElement();
                 if (obj instanceof SearchResult) {
                     SearchResult si = (SearchResult) obj;
+                    if("".equals(displayName)){
+                        Attributes attributes = si.getAttributes();
+                        if(attributes!=null){
+                            Attribute attribute = attributes.get("displayName");
+                            if(attribute!=null){
+                                displayName = (String) attribute.get(0);
+                            }
+                        }
+                    }
                     userDN += si.getName();
                     userDN += "," + BASEDN;
-                } else {
-                    System.out.println(obj);
                 }
             }
+
         } catch (Exception e) {
             System.out.println("查找用户时产生异常。");
             e.printStackTrace();
         }
 
-        return userDN;
+        return new LdapUser(userDN,displayName);
     }
 
-    public boolean authenticate(String UID, String password) {
+    public boolean authenticate(String uid, String password) {
         boolean valide = false;
-        String userDN = getUserDN(UID);
+        LdapUser ldapUser = getUserDN(uid);
+        String userDN = ldapUser.getUserDN();
 
         try {
             ctx.addToEnvironment(Context.SECURITY_PRINCIPAL, userDN);
             ctx.addToEnvironment(Context.SECURITY_CREDENTIALS, password);
             ctx.reconnect(connCtls);
             System.out.println(userDN + " 验证通过");
+            System.out.println("姓名: " + ldapUser.getDisplayName());
             valide = true;
         } catch (AuthenticationException e) {
             System.out.println(userDN + " 验证失败");
@@ -127,8 +140,24 @@ public class LdapJNDI {
             System.out.println(userDN + " 验证失败");
             valide = false;
         }
-
         return valide;
+    }
+
+    private class LdapUser{
+        private String userDN;
+        private String displayName;
+        public LdapUser(String userDN, String displayName){
+            this.userDN = userDN;
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public String getUserDN() {
+            return userDN;
+        }
     }
 
     public static void main(String[] args) {
