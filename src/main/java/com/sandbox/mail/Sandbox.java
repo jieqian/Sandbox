@@ -26,7 +26,7 @@ public class Sandbox {
         Transport ts = session.getTransport();
         // 连接邮件服务器：邮箱类型，帐号，授权码代替密码（更安全）
         // 第三个参数为授权码，具体参考https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
-        ts.connect("smtp.exmail.qq.com","devops@mobilemd.cn", "9ptqoGdhqJE2YkQL");
+        ts.connect("smtp.exmail.qq.com","devops@xxx.cn", "xxxxxxxxxx");
         // 创建邮件
         Message message = createSimpleMail(session);
         // 发送邮件
@@ -39,9 +39,9 @@ public class Sandbox {
         // 创建邮件对象
         MimeMessage message = new MimeMessage(session);
         // 指明邮件的发件人
-        message.setFrom(new InternetAddress("devops@mobilemd.cn"));
+        message.setFrom(new InternetAddress("devops@xxx.cn"));
         // 指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress("vash_ace@163.com"));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress("jay@xxx.cn"));
         // 邮件的标题
         message.setSubject("JavaMail测试");
         // 邮件的文本内容
