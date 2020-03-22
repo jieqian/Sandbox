@@ -1,5 +1,8 @@
 package com.sandbox.algorithm.sort.quicksort;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by qianjie on 5/4/18.
  */
@@ -12,5 +15,9 @@ public class Sandbox {
             System.out.print(i);
             System.out.print(" ");
         }
+
+//        Set<String> set = new HashSet<>();
+//        set.add
+
     }
 }

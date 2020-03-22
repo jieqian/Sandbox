@@ -164,7 +164,7 @@ public class LdapJNDI {
         LdapJNDI ldapJNDI = new LdapJNDI();
 //        ldapJNDI.JNDILookup();
         String uid = "jie.qian";
-        String password = "Jq12345";
+        String password = "Jq@12345";
         System.out.println(ldapJNDI.authenticate(uid,password));
     }
 }

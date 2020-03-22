@@ -6,4 +6,6 @@ public interface Tree {
     String getName();
 
     void pluckFruits();
+
+    <T> T cal(T first, T second);
 }
