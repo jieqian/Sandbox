@@ -1,24 +1,44 @@
 package com.sandbox;
 
-import com.google.common.collect.Lists;
-import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class Temp {
+    private static final DateTimeFormatter SERVICER_VERSION_PREFIX_PATTEN = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
 //        List<Integer> list = Arrays.asList(1,2,3);
 //        list.add(11);
 //        list.stream().forEach(System.out::println);
         Temp t= new Temp();
-        System.out.println(t.dump());
+//        System.out.println(t.dump());
+        System.out.println(t.buildServiceVersion("2020032314213400002"));
+
+        List<String> list = Arrays.asList("3","2","4");
+        System.out.println(String.join(",",list));
+        System.out.println(Integer.parseInt("2020032314213400002".substring(14)));
+    }
+
+    private String buildServiceVersion(){
+        return buildServiceVersion("");
+    }
+
+    private String buildServiceVersion(String lastVersion){
+        String prefix = LocalDateTime.now().format(SERVICER_VERSION_PREFIX_PATTEN);
+        int autoIncreamentVersion = 1;
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(lastVersion)){
+            autoIncreamentVersion = Integer.parseInt(lastVersion.substring(14)) + 1;
+        }
+        return prefix + org.apache.commons.lang3.StringUtils.leftPad(String.valueOf(autoIncreamentVersion),5,"0");
     }
 
     public String dump(){

@@ -6,10 +6,10 @@ import com.sandbox.algorithm.tree.Utils;
 public class Sandbox {
     public static void main(String[] args) {
         TreeNode treeNode = Utils.buildBST();
-        TreeNode p = new TreeNode(5);
+        TreeNode p = new TreeNode(1);
         TreeNode q = new TreeNode(7);
-//        System.out.println(lowestCommonAncestor(treeNode, p, q).val);
-        System.out.println(bstLowestCommonAncestor(treeNode, p, q).val);
+       System.out.println(lowestCommonAncestor(treeNode, p, q).val);
+//        System.out.println(bstLowestCommonAncestor(treeNode, p, q).val);
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q){

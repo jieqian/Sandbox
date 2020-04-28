@@ -4,9 +4,9 @@ import java.text.NumberFormat;
 
 public class Sandbox {
     public static void main(String[] args) {
-        System.out.println(mySqrt(4));
-        System.out.println(sqrt(4, 0.01d));
-        System.out.println(mySqrt(4,4));
+        System.out.println(mySqrt(2));
+        System.out.println(sqrt(2, 0.01d));
+        System.out.println(mySqrt(5,4));
     }
 
     public static int mySqrt(int x) {
