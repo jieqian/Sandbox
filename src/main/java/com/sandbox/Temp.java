@@ -1,58 +1,89 @@
 package com.sandbox;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Temp {
-    private static final DateTimeFormatter SERVICER_VERSION_PREFIX_PATTEN = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
-    public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-//        List<Integer> list = Arrays.asList(1,2,3);
-//        list.add(11);
-//        list.stream().forEach(System.out::println);
-        Temp t= new Temp();
-//        System.out.println(t.dump());
-        System.out.println(t.buildServiceVersion("2020032314213400002"));
+    static int a = 5;
+    static int b = 7;
 
-        List<String> list = Arrays.asList("3","2","4");
-        System.out.println(String.join(",",list));
-        System.out.println(Integer.parseInt("2020032314213400002".substring(14)));
+//    static int[] array = {1,1,0,1,1};
+    static int[] array = {0,1,1,0};
+
+    public static void main(String[] args) {
+        System.out.println("a->" + a + "\n" + "b->" + b);
+        a=a^b;
+        System.out.println("=========="+(a&(b-1)));
+        b=a^b;
+        a=a^b;
+        System.out.println("after swap");
+        System.out.println("a->" + a + "\n" + "b->" + b);
+
+        System.out.println(solution(array));
+
+        System.out.println(11^8);
     }
 
-    private String buildServiceVersion(){
-        return buildServiceVersion("");
+    public static int solution(int[] a){
+        int rv0 = flip0(a);
+        int rv1 = flip1(a);
+        return Math.min(rv1,rv0);
     }
 
-    private String buildServiceVersion(String lastVersion){
-        String prefix = LocalDateTime.now().format(SERVICER_VERSION_PREFIX_PATTEN);
-        int autoIncreamentVersion = 1;
-        if (org.apache.commons.lang3.StringUtils.isNotEmpty(lastVersion)){
-            autoIncreamentVersion = Integer.parseInt(lastVersion.substring(14)) + 1;
-        }
-        return prefix + org.apache.commons.lang3.StringUtils.leftPad(String.valueOf(autoIncreamentVersion),5,"0");
-    }
-
-    public String dump(){
-        String dump = null;
-        try {
-            if (dump.equals("")){
-                System.out.println("equals");
+    private static int flip1(int[] a){
+        int rv = 0;
+        int len = a.length;
+        for(int i=0;i<len;i++){
+            if(i%2==0){
+                if(a[i]!=0){
+                    rv++;
+                }
+            }else {
+                if(a[i]!=1){
+                    rv++;
+                }
             }
-        } finally {
-            System.out.println("finally");
         }
-
-        System.out.println("processing");
-
-        return "end";
+        return rv;
     }
+
+    private static int flip0(int[] a){
+        int rv = 0;
+        int len = a.length;
+        for(int i=0;i<len;i++){
+            if(i%2==0){
+                if(a[i]!=1){
+                    rv++;
+                }
+            }else {
+                if(a[i]!=0){
+                    rv++;
+                }
+            }
+        }
+        return rv;
+    }
+
+//    public static int solution(int[] a){
+//        int rv = -1;
+//        List<Integer> list = Arrays.stream(a).boxed().collect(Collectors.toList());
+//        Collections.sort(list);
+//        Iterator<Integer> itr = list.iterator();
+//        while (itr.hasNext()){
+//            Integer i = itr.next();
+//            if (i<0 && itr.hasNext()){
+//                continue;
+//            } else if (!list.contains(i+1) && i > 0){
+//                rv = i + 1;
+//                break;
+//            } else if (!itr.hasNext() && i<=0){
+//                rv = 1;
+//            }
+//        }
+//        return rv;
+//    }
 }

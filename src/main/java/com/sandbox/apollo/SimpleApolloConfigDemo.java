@@ -1,9 +1,9 @@
-package com.sandbox.apollo;
-
-/**
- * @author Jason Song(song_s@ctrip.com)
- */
-public class SimpleApolloConfigDemo {
+//package com.sandbox.apollo;
+//
+///**
+// * @author Jason Song(song_s@ctrip.com)
+// */
+//public class SimpleApolloConfigDemo {
 //  private static final Logger logger = LoggerFactory.getLogger(SimpleApolloConfigDemo.class);
 //  private String DEFAULT_VALUE = "undefined";
 //  private Config config;
@@ -48,4 +48,4 @@ public class SimpleApolloConfigDemo {
 //      apolloConfigDemo.getConfig(input);
 //    }
 //  }
-}
+//}

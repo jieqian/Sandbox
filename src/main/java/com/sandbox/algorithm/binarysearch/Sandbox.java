@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class Sandbox {
     public static Integer[] array = {1,3,6,5,2,9};
@@ -14,6 +16,8 @@ public class Sandbox {
         int lenght = list.size();
         Integer[] sortedArray = new Integer[lenght];
         list.toArray(sortedArray);
+
+        Executor tp = Executors.newCachedThreadPool();
 
         System.out.println(binarySearch(sortedArray,6));
     }
