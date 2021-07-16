@@ -1,4 +1,4 @@
-package com.sandbox.jdk8.concurrency;
+package com.sandbox.jdk8.concurrency.accumulator;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

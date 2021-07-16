@@ -30,6 +30,26 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.11</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
@@ -69,11 +89,11 @@
             <artifactId>kryo</artifactId>
             <version>4.0.1</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.ctrip.framework.apollo</groupId>-->
-            <!--<artifactId>apollo-client</artifactId>-->
-            <!--<version>0.7.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -163,6 +183,11 @@
             <version>1.4.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.shibing624</groupId>
+            <artifactId>similarity</artifactId>
+            <version>1.1.3</version>
+        </dependency>
     </dependencies>
 
     <build>

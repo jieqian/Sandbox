@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Sandbox {
     public static Map<Integer,Integer> cache = new HashMap<>();
-    public static int total = 8;
+    public static int total = 40;
     public static List<Integer> fabList_v1 = new ArrayList<>();
 
     public static void main(String []args){
@@ -17,8 +17,8 @@ public class Sandbox {
         int v2 = fab_v2(total);
         System.out.println();
         System.out.println("v0 => " + fab_v0(total-1));
-        System.out.println("v1 => " + fabList_v1.get(total-1));
-        System.out.println("v2 => " + v2);
+//        System.out.println("v1 => " + fabList_v1.get(total-1));
+//        System.out.println("v2 => " + v2);
     }
 
     public static int fab_v0(int n){

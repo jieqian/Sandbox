@@ -6,7 +6,12 @@ public class Sandbox {
                 = new ThreadLocalWithUserContext(1);
         ThreadLocalWithUserContext secondUser
                 = new ThreadLocalWithUserContext(2);
-        new Thread(firstUser).start();
-        new Thread(secondUser).start();
+        Thread firstUserThread = new Thread(firstUser);
+        firstUserThread.setName("firstUserThread");
+        firstUserThread.start();
+        Thread secondUserThread = new Thread(secondUser);
+        secondUserThread.setName("secondUserThread");
+        secondUserThread.start();
+
     }
 }
